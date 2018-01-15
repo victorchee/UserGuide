@@ -16,6 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let splashWindow = UIWindow(frame: UIScreen.main.bounds)
+        splashWindow.backgroundColor = UIColor.clear
+        splashWindow.windowLevel = UIWindowLevelStatusBar
+        splashWindow.makeKeyAndVisible()
+        let userGuideViewController = UIStoryboard(name: "Splash", bundle: nil).instantiateInitialViewController() as? UserGuideViewController
+        userGuideViewController?.quitButtonTappedHandler = { _ in
+            splashWindow.isHidden = true
+        }
+        splashWindow.rootViewController = userGuideViewController
         return true
     }
 
